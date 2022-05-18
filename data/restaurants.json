@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Carlos",
+    "address": "Test",
+    "cuisine": "Test",
+    "website": "https://taxacc.co",
+    "description": "test.com"
+  },
+  {
+    "name": "Murillo",
+    "address": "Prueba",
+    "cuisine": "Prueba",
+    "website": "https://taxacc.co",
+    "description": "test.com"
+  },
+  {
+    "name": "Carlos",
+    "address": "La Fuente, Managua",
+    "cuisine": "Nica",
+    "website": "https://www.taxacc.co",
+    "description": "It is awesome"
+  }
+]

@@ -8,17 +8,25 @@ const app = express();
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
-
 app.use(express.static("public")); // Para subir el CSS y responsive.js
 app.use(express.urlencoded({ extended: false }));
-
 
 app.get("/", function (req, res) {
   res.render("index");
 });
 
+app.get("/index", function (req, res) {
+  res.render("index");
+});
+
 app.get("/restaurants", function (req, res) {
-  res.render("restaurants", { numberOfRestaurants: 2 });
+  const filePath = path.join(__dirname, "data", "restaurants.json");
+
+  const fileData = fs.readFileSync(filePath);
+  const storedRestaurants = JSON.parse(fileData);
+
+
+  res.render("restaurants", { numberOfRestaurants: storedRestaurants.length, restaurants: storedRestaurants });
 });
 
 app.get("/recommend", function (req, res) {
@@ -27,7 +35,7 @@ app.get("/recommend", function (req, res) {
 
 app.post("/recommend", function (req, res) {
   const restaurant = req.body;
-  const filePath = path.join(__dirname, "data", "restaurant.json");
+  const filePath = path.join(__dirname, "data", "restaurants.json");
 
   const fileData = fs.readFileSync(filePath);
   const storedRestaurants = JSON.parse(fileData);
@@ -46,6 +54,5 @@ app.get("/confirm", function (req, res) {
 app.get("/about", function (req, res) {
   res.render("about");
 });
-
 
 app.listen(3000);
